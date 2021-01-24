@@ -1,0 +1,30 @@
+<div class="container">
+    <form [formGroup]="depositForm" (ngSubmit)="submitForm()">
+        <fieldset [disabled]="isSubmitting">
+          <fieldset class="form-group">
+            <input
+              formControlName="Deposit Amount"
+              placeholder="Deposit Amount"
+              class="form-control form-control-lg"
+              type="text" />
+          </fieldset>
+          <fieldset class="form-group">
+            <input
+              formControlName="Select Tenure"
+              placeholder="Select Tenure"
+              class="form-control form-control-lg"
+              type="text" />
+          </fieldset>
+          <fieldset class="form-group">
+            <input
+              formControlName="Rate Of Interest"
+              placeholder="Rate Of Interest"
+              class="form-control form-control-lg"
+              type="text" />
+          </fieldset>
+          <button class="btn btn-lg"  type="submit">
+            Calculate Return
+          </button>
+        </fieldset>
+      </form>
+</div>

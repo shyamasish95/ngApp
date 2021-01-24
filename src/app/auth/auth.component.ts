@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-auth',
@@ -13,6 +14,8 @@ export class AuthComponent implements OnInit {
   isSubmitting: boolean = false;
   authForm : FormGroup;
   constructor(
+    private _sharedService : SharedService,
+    private router : Router,
     private route : ActivatedRoute,
     private fb : FormBuilder
   ) { 
@@ -40,5 +43,7 @@ export class AuthComponent implements OnInit {
   }else{
     const curUser = JSON.parse(localStorage.getItem(credentials.email));
   }
+  this._sharedService.setItem(credentials.email);
+  this.router.navigate(['./dashboard']);
   }
 }

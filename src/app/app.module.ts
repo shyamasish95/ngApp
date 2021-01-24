@@ -4,6 +4,11 @@ import {RouterModule, Routes} from '@angular/router'
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthComponent } from './auth/auth.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { DepositComponent } from './deposit/deposit.component';
+import { WithdrawComponent } from './withdraw/withdraw.component';
+import { CreditcardComponent } from './creditcard/creditcard.component';
+import { FundtransferComponent } from './fundtransfer/fundtransfer.component';
 
 const routes : Routes=[
   {
@@ -13,12 +18,37 @@ const routes : Routes=[
   {
     path:'login',
     component:AuthComponent
+  },
+  {
+    path:'dashboard',
+    component:DashboardComponent
+  },
+  {
+    path:'deposit',
+    component:DepositComponent
+  },
+  {
+    path:'withdraw',
+    component:WithdrawComponent
+  },
+  {
+    path:'creditcard',
+    component:CreditcardComponent
+  },
+  {
+    path:'fundtransfer',
+    component:FundtransferComponent
   }
 ];
 @NgModule({
   declarations: [
     AppComponent,
-    AuthComponent
+    AuthComponent,
+    DashboardComponent,
+    DepositComponent,
+    WithdrawComponent,
+    CreditcardComponent,
+    FundtransferComponent
   ],
   imports: [
     BrowserModule,
