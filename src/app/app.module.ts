@@ -9,8 +9,14 @@ import { DepositComponent } from './deposit/deposit.component';
 import { WithdrawComponent } from './withdraw/withdraw.component';
 import { CreditcardComponent } from './creditcard/creditcard.component';
 import { FundtransferComponent } from './fundtransfer/fundtransfer.component';
+import { LandingComponent } from './landing/landing.component';
+import {NavbarComponent} from './navbar.component'
 
 const routes : Routes=[
+  {
+    path:'',
+    component:LandingComponent
+  },
   {
     path:'register',
     component:AuthComponent
@@ -48,7 +54,9 @@ const routes : Routes=[
     DepositComponent,
     WithdrawComponent,
     CreditcardComponent,
-    FundtransferComponent
+    FundtransferComponent,
+    LandingComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,

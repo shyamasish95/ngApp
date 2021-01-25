@@ -9,6 +9,7 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
+  public currUser;
   authType :string = '';
   title: string = '';
   isSubmitting: boolean = false;
@@ -39,10 +40,14 @@ export class AuthComponent implements OnInit {
   this.isSubmitting = true;
   const credentials = this.authForm.value;
   if(this.authType==='register'){
-    localStorage.setItem(credentials.email,credentials);
+    localStorage.setItem(credentials.email,JSON.stringify(credentials));
   }else{
-    const curUser = JSON.parse(localStorage.getItem(credentials.email));
+    this.currUser = JSON.parse(localStorage.getItem(credentials.email));
+    if(this.currUser!= null){
+      localStorage.setItem("isAuthenticated","true");
+    }
   }
+  this._sharedService.setLoggedInUser(this.currUser);
   this._sharedService.setItem(credentials.email);
   this.router.navigate(['./dashboard']);
   }

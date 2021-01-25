@@ -8,11 +8,13 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  public userMail;
+  public user = {};
+  //public userName ='';
   constructor(private _sharedService : SharedService,
     private _router : Router
     ) {
-    this.userMail= this._sharedService.getItem();
+    this.user= this._sharedService.getLoggedInUser();
+    //this.userName = this.user.username;
    }
   
   ngOnInit(): void {
