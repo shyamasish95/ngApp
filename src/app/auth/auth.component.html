@@ -1,4 +1,4 @@
-<div class="auth-page">
+<!-- <div class="auth-page">
     <div class="container page">
       <div class="row">
   
@@ -8,7 +8,6 @@
             <a [routerLink]="['/login']" *ngIf="authType == 'register'">Have an account?</a>
             <a [routerLink]="['/register']" *ngIf="authType == 'login'">Need an account?</a>
           </p>
-          <!-- <app-list-errors [errors]="errors"></app-list-errors> -->
           <form [formGroup]="authForm" (ngSubmit)="submitForm()">
             <fieldset [disabled]="isSubmitting">
               <fieldset class="form-group">
@@ -33,7 +32,7 @@
                   class="form-control form-control-lg"
                   type="password" />
               </fieldset>
-              <button class="btn btn-lg"  type="submit">
+              <button class="btn btn-lg btn-primary pull-xs-right"  type="submit">
                 {{ title }}
               </button>
             </fieldset>
@@ -42,5 +41,37 @@
   
       </div>
     </div>
+  </div> -->
+  <div>
+    <mat-card>
+      <button [routerLink]="['/login']" *ngIf="authType == 'register'" class="mat-raised-button">Have an account?</button>
+      <button [routerLink]="['/register']" *ngIf="authType == 'login'" class="mat-raised-button">Need an account?</button>
+      <div></div>
+      <form [formGroup]="authForm" (ngSubmit)="submitForm()">
+        <fieldset [disabled]="isSubmitting">
+          <mat-form-field *ngIf="authType == 'register'"appearance="fill">
+            <mat-label>email Id</mat-label>
+            <input matInput placeholder="user name">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Enter Your user name here</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>email Id</mat-label>
+            <input matInput placeholder="email id">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Enter Your Email Id here</mat-hint>
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput placeholder="password">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+            <mat-hint>Enter your password</mat-hint>
+          </mat-form-field>
+          <button class="mat-raised-button" color="primary" type="submit">
+            {{ title }}
+          </button>
+        </fieldset>
+      </form>
+      
+    </mat-card>
   </div>
-  

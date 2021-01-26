@@ -10,7 +10,9 @@ import { WithdrawComponent } from './withdraw/withdraw.component';
 import { CreditcardComponent } from './creditcard/creditcard.component';
 import { FundtransferComponent } from './fundtransfer/fundtransfer.component';
 import { LandingComponent } from './landing/landing.component';
-import {NavbarComponent} from './navbar.component'
+import {NavbarComponent} from './navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { MaterialModule } from './material/material.module';
 
 const routes : Routes=[
   {
@@ -62,7 +64,9 @@ const routes : Routes=[
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]
