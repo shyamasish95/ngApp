@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../shared.service';
+import {UserFace} from '../models/user.model'
 
 @Component({
   selector: 'app-auth',
@@ -9,7 +10,7 @@ import { SharedService } from '../shared.service';
   styleUrls: ['./auth.component.css']
 })
 export class AuthComponent implements OnInit {
-  public currUser;
+  currUser : UserFace;
   authType :string = '';
   title: string = '';
   isSubmitting: boolean = false;
@@ -38,16 +39,16 @@ export class AuthComponent implements OnInit {
   }
   submitForm(){
   this.isSubmitting = true;
-  const credentials = this.authForm.value;
+  const credentials :UserFace= this.authForm.value;
   if(this.authType==='register'){
     localStorage.setItem(credentials.email,JSON.stringify(credentials));
   }else{
     this.currUser = JSON.parse(localStorage.getItem(credentials.email));
+    this._sharedService.setLoggedInUser(this.currUser);
     if(this.currUser!= null){
       localStorage.setItem("isAuthenticated","true");
     }
   }
-  this._sharedService.setLoggedInUser(this.currUser);
   this._sharedService.setItem(credentials.email);
   this.router.navigate(['./dashboard']);
   }

@@ -13,6 +13,7 @@ import { LandingComponent } from './landing/landing.component';
 import {NavbarComponent} from './navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from './material/material.module';
+import { ActivateGuard } from './activate.guard';
 
 const routes : Routes=[
   {
@@ -29,23 +30,28 @@ const routes : Routes=[
   },
   {
     path:'dashboard',
-    component:DashboardComponent
+    component:DashboardComponent,
+    canActivate:[ActivateGuard]
   },
   {
     path:'deposit',
-    component:DepositComponent
+    component:DepositComponent,
+    canActivate:[ActivateGuard]
   },
   {
     path:'withdraw',
-    component:WithdrawComponent
+    component:WithdrawComponent,
+    canActivate:[ActivateGuard]
   },
   {
     path:'creditcard',
-    component:CreditcardComponent
+    component:CreditcardComponent,
+    canActivate:[ActivateGuard]
   },
   {
     path:'fundtransfer',
-    component:FundtransferComponent
+    component:FundtransferComponent,
+    canActivate:[ActivateGuard]
   }
 ];
 @NgModule({
