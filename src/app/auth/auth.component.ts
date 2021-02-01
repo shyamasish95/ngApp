@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { ActivatedRoute, Router } from '@angular/router';
 import { SharedService } from '../shared.service';
 import {UserFace} from '../models/user.model'
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-auth',
@@ -19,7 +20,8 @@ export class AuthComponent implements OnInit {
     private _sharedService : SharedService,
     private router : Router,
     private route : ActivatedRoute,
-    private fb : FormBuilder
+    private fb : FormBuilder,
+    private snackBar: MatSnackBar
   ) { 
     this.authForm = fb.group({
       'email':['',Validators.required],
@@ -37,19 +39,38 @@ export class AuthComponent implements OnInit {
         }
       });
   }
-  submitForm(){
-  this.isSubmitting = true;
-  const credentials :UserFace= this.authForm.value;
-  if(this.authType==='register'){
+
+  addUser(credentials) {
+    // temp logic
     localStorage.setItem(credentials.email,JSON.stringify(credentials));
-  }else{
-    this.currUser = JSON.parse(localStorage.getItem(credentials.email));
-    this._sharedService.setLoggedInUser(this.currUser);
-    if(this.currUser!= null){
-      localStorage.setItem("isAuthenticated","true");
-    }
   }
-  this._sharedService.setItem(credentials.email);
-  this.router.navigate(['./dashboard']);
+
+  validateUser({email}) {
+    // temp
+    let currentUser = localStorage.getItem(email);
+    return currentUser ?  JSON.parse(localStorage.getItem(email)) : false;
+  }
+
+  submitForm(){ 
+    // start validating user
+    this.isSubmitting = true;
+    const credentials: UserFace = this.authForm.value;
+
+    if( this.authType==='register' ) { //new user register
+      // add a user to db
+      this.addUser(credentials);
+    } else { // existing user login
+      let currentUser = this.validateUser(credentials);
+      if(currentUser) { // user found
+        this._sharedService.setLoggedInUser(currentUser);
+        localStorage.setItem("isAuthenticated","true");
+        this._sharedService.setItem(credentials.email);
+        this.router.navigate(['./dashboard']);
+      } else { // user not found
+        this.snackBar.open(`Sorry ${credentials.email}, you don't have a account`, null, { duration: 5000 })
+        // logic to clear the form here
+        this.isSubmitting = false;
+      }
+    } 
   }
 }
