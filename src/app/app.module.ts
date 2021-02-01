@@ -14,7 +14,7 @@ import {NavbarComponent} from './navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from './material/material.module';
 import { ActivateGuard } from './activate.guard';
-
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 const routes : Routes=[
   {
     path:'',
@@ -72,7 +72,8 @@ const routes : Routes=[
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]
