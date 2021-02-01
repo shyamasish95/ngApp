@@ -15,6 +15,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MaterialModule } from './material/material.module';
 import { ActivateGuard } from './activate.guard';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {HttpClientModule,HttpClient} from '@angular/common/http';
 const routes : Routes=[
   {
     path:'',
@@ -69,13 +70,14 @@ const routes : Routes=[
   imports: [
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     RouterModule.forRoot(routes),
     BrowserAnimationsModule,
     MaterialModule,
     MatSnackBarModule
   ],
-  providers: [],
+  providers: [HttpClientModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
